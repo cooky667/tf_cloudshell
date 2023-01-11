@@ -10,7 +10,7 @@ resource "azurerm_network_profile" "network_profile" {
 
     ip_configuration {
       name                          = "ipconfig"
-      subnet_id                     = azurerm_subnet.subnet["subnet1"].id
+      subnet_id                     = azurerm_subnet.subnet["subnet2"].id
       private_ip_address_allocation = "Dynamic"
     }
   }

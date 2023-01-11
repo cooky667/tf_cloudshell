@@ -1,41 +1,54 @@
 //variables for the module
 
-variable "region" {
-  description = "AWS Region"
-  default     = "us-east-1"
+variable "location" {
+  description = "Location"
+  default     = "uksouth"
 }
 
-variable "vpc_id" {
-  description = "VPC ID"
+variable "resource_group_name" {
+  description = "Resource Group Name"
+  default     = "rg-aks-01"
 }
 
-variable "subnet_ids" {
-  description = "Subnet IDs"
-  type        = list
+variable "vnet_name" {
+  description = "Vnet Name"
+  default     = "vnet01"
 }
 
-variable "instance_type" {
-  description = "Instance type"
-  default     = "t3.micro"
+variable "nat_gateway_name" {
+  description = "Nat Gateway Name"
+  default     = "natgw01"
 }
 
-variable "ami_id" {
-  description = "AMI ID"
-  default     = "ami-0f0c4d4e4d4e4e4e4"
+variable "storage_account_name" {
+  description = "Storage Account Name"
+  default     = "shellstorage"
 }
 
-variable "key_name" {
-  description = "Key name"
-  default     = "test-key"
+variable "container_instance_id" {
+  description = "Container Instance ID"
+  default     = "5b070ec1-29a1-4f09-adb1-8596ec073a2a"
 }
 
-variable "name" {
-  description = "Name"
-  default     = "test-instance"
+variable "vnet_cidr" {
+  description = "Vnet CIDR"
+  default     = "10.0.0.0/16"
+}
+
+variable "subnet_cidr" {
+  description = "Tags"
+  type        = map
+  default     = {
+    "subnet1" = "10.0.0.0/24",
+    "subnet2" = "10.0.1.0/24",
+  }
 }
 
 variable "tags" {
   description = "Tags"
   type        = map
-  default     = {}
+  default     = {
+    "Environment" = "Dev",
+    "Owner"       = "John Doe",
+  }
 }
