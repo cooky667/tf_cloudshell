@@ -1,6 +1,6 @@
 //private endpoint for relay
 resource "azurerm_private_endpoint" "relay" {
-  name                = "Cloud_Shell_Endpoint"
+  name                = "cloud_shell_endpoint"
   location            = var.location
   resource_group_name = azurerm_resource_group.rg.name
   subnet_id           = azurerm_subnet.subnet1.id

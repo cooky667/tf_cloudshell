@@ -9,7 +9,7 @@ resource "azurerm_network_profile" "network_profile" {
     name = "nic"
 
     ip_configuration {
-      name                          = "ipconfig"
+      name                          = "cloud_shell_ip_config"
       subnet_id                     = azurerm_subnet.subnet2.id
     }
   }

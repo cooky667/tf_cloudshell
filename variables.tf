@@ -7,17 +7,17 @@ variable "location" {
 
 variable "resource_group_name" {
   description = "Resource Group Name"
-  default     = "rg01"
+  default     = "rg-cloud_shell"
 }
 
 variable "vnet_name" {
   description = "Vnet Name"
-  default     = "vnet01"
+  default     = "vnet-cloud_shell"
 }
 
 variable "nat_gateway_name" {
   description = "Nat Gateway Name"
-  default     = "natgw01"
+  default     = "natgw-cloud_shell"
 }
 
 variable "storage_account_name" {
@@ -32,15 +32,15 @@ variable "container_instance_id" {
 
 variable "vnet_cidr" {
   description = "Vnet CIDR"
-  default     = "10.0.0.0/16"
+  default     = "10.0.99.0/24"
 }
 
 variable "subnet_cidr" {
   description = "Tags"
   type        = map
   default     = {
-    "subnet1" = "10.0.0.0/24",
-    "subnet2" = "10.0.1.0/24",
+    "subnet1" = "10.0.99.0/25",
+    "subnet2" = "10.0.99.128/25",
   }
 }
 
@@ -49,6 +49,6 @@ variable "tags" {
   type        = map
   default     = {
     "Environment" = "Dev",
-    "Owner"       = "John Doe",
+    "Owner"       = "Richard Cooke",
   }
 }

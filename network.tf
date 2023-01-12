@@ -10,7 +10,7 @@ resource "azurerm_virtual_network" "vnet" {
 //deploy subnets in vnet
 
 resource "azurerm_subnet" "subnet1" {
-  name                 = "subnet1"
+  name                 = "cloud_shell_relay"
   resource_group_name  = azurerm_resource_group.rg.name
   virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefixes     = [var.subnet_cidr["subnet1"]]
@@ -19,7 +19,7 @@ resource "azurerm_subnet" "subnet1" {
 }
 
 resource "azurerm_subnet" "subnet2" {
-  name                 = "subnet2"
+  name                 = "cloud_shell_containers"
   resource_group_name  = azurerm_resource_group.rg.name
   virtual_network_name = azurerm_virtual_network.vnet.name
   delegation {
