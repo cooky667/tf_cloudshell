@@ -26,17 +26,10 @@ resource "azurerm_subnet" "subnet2" {
     name = "delegation"
     service_delegation {
       name    = "Microsoft.ContainerInstance/containerGroups"
-      #actions = ["Microsoft.Network/virtualNetworks/subnets/join/action",
-      #           "Microsoft.Network/virtualNetworks/subnets/prepareNetworkPolicies/action",
-      #           "Microsoft.Network/virtualNetworks/subnets/unprepareNetworkPolicies/action"]
+      actions = ["Microsoft.Network/virtualNetworks/subnets/action"]
     }
   }
   address_prefixes     = [var.subnet_cidr["subnet2"]]
   service_endpoints    = ["Microsoft.Storage"]
   private_endpoint_network_policies_enabled = false
-}
-
-resource "azurerm_subnet_nat_gateway_association" "nat_gateway_association" {
-  subnet_id      = azurerm_subnet.subnet2.id
-  nat_gateway_id = azurerm_nat_gateway.nat_gateway.id
 }

@@ -10,8 +10,6 @@ resource "azurerm_storage_account" "storage" {
     virtual_network_subnet_ids = [
       azurerm_subnet.subnet2.id
     ]
-
-    ip_rules = ["81.108.181.70"]
   }
 }
 

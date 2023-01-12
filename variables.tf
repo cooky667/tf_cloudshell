@@ -32,15 +32,15 @@ variable "container_instance_id" {
 
 variable "vnet_cidr" {
   description = "Vnet CIDR"
-  default     = "10.0.99.0/24"
+  default     = "10.199.199.0/24"
 }
 
 variable "subnet_cidr" {
   description = "Tags"
   type        = map
   default     = {
-    "subnet1" = "10.0.99.0/25",
-    "subnet2" = "10.0.99.128/25",
+    "subnet1" = "10.199.199.0/25",
+    "subnet2" = "10.199.199.128/25",
   }
 }
 
