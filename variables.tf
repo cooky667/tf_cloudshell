@@ -7,7 +7,7 @@ variable "location" {
 
 variable "resource_group_name" {
   description = "Resource Group Name"
-  default     = "rg-aks-01"
+  default     = "rg01"
 }
 
 variable "vnet_name" {

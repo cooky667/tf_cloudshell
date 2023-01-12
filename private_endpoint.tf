@@ -3,12 +3,12 @@ resource "azurerm_private_endpoint" "relay" {
   name                = "Cloud_Shell_Endpoint"
   location            = var.location
   resource_group_name = azurerm_resource_group.rg.name
-  subnet_id           = azurerm_subnet.subnet["subnet1"].id
+  subnet_id           = azurerm_subnet.subnet1.id
   private_service_connection {
     name                           = "cloud_shell_relay"
     is_manual_connection           = false
     private_connection_resource_id = azurerm_relay_namespace.relay.id
-    subresource_names              = ["hybridConnections"]
+    subresource_names = ["namespace"]
   }
   tags = var.tags
 }

@@ -9,14 +9,34 @@ resource "azurerm_virtual_network" "vnet" {
 
 //deploy subnets in vnet
 
-resource "azurerm_subnet" "subnet" {
-  for_each             = var.subnet_cidr
-  name                 = each.key
+resource "azurerm_subnet" "subnet1" {
+  name                 = "subnet1"
   resource_group_name  = azurerm_resource_group.rg.name
   virtual_network_name = azurerm_virtual_network.vnet.name
-  address_prefixes     = [each.value]
-  nat_gateway_id       = azurerm_nat_gateway.nat_gateway.id
+  address_prefixes     = [var.subnet_cidr["subnet1"]]
   service_endpoints    = ["Microsoft.Storage"]
-  private_endpoint_network_policies = "Disabled"
+  private_endpoint_network_policies_enabled = false
 }
 
+resource "azurerm_subnet" "subnet2" {
+  name                 = "subnet2"
+  resource_group_name  = azurerm_resource_group.rg.name
+  virtual_network_name = azurerm_virtual_network.vnet.name
+  delegation {
+    name = "delegation"
+    service_delegation {
+      name    = "Microsoft.ContainerInstance/containerGroups"
+      #actions = ["Microsoft.Network/virtualNetworks/subnets/join/action",
+      #           "Microsoft.Network/virtualNetworks/subnets/prepareNetworkPolicies/action",
+      #           "Microsoft.Network/virtualNetworks/subnets/unprepareNetworkPolicies/action"]
+    }
+  }
+  address_prefixes     = [var.subnet_cidr["subnet2"]]
+  service_endpoints    = ["Microsoft.Storage"]
+  private_endpoint_network_policies_enabled = false
+}
+
+resource "azurerm_subnet_nat_gateway_association" "nat_gateway_association" {
+  subnet_id      = azurerm_subnet.subnet2.id
+  nat_gateway_id = azurerm_nat_gateway.nat_gateway.id
+}
